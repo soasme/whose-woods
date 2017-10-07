@@ -23,11 +23,26 @@ export default class Record extends Component {
     return date.toLocaleString('en-GB')
   }
 
+  toEditingState(e) {
+    e.preventDefault()
+    console.log('hello world')
+  }
+
   render() {
     return (
       <div className="Record" data-id={this.props.record.id}>
         <div className="Time">{this.toHumanTime()}</div>
-        <div className="Content">{this.props.record.content}</div>
+        <div className="Operations">
+          <span>Delete</span>
+        </div>
+        <form onSubmit={this.toEditingState}>
+          <div>
+            <textarea className="Content" defaultValue={this.props.record.content} />
+          </div>
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
       </div>
     )
   }
