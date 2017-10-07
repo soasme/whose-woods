@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Worklog from './worklog/Worklog';
+import WorkspacePicker from './workspace-picker/WorkspacePicker';
 import './App.css';
 
 class App extends Component {
@@ -7,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">[ Life ] Woods</h1>
+          <h1 className="App-title"><WorkspacePicker /> Woods</h1>
         </header>
         <Worklog />
       </div>
