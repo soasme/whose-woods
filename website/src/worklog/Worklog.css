@@ -1,0 +1,11 @@
+.Worklog .AddWorklog {
+  text-align: center;
+  vertical-align: center;
+  border: solid 1px #eee;
+  color: #aaa;
+  padding: 10px 0;
+}
+
+.Worklog .Records {
+
+}
