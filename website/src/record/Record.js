@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RecordEditor from '../record-editor/RecordEditor';
 import './Record.css';
 
 export default class Record extends Component {
@@ -32,17 +33,9 @@ export default class Record extends Component {
     return (
       <div className="Record" data-id={this.props.record.id}>
         <div className="Time">{this.toHumanTime()}</div>
-        <div className="Operations">
-          <span>Delete</span>
+        <div>
+          <RecordEditor defaultValue={this.props.record.content} />
         </div>
-        <form onSubmit={this.toEditingState}>
-          <div>
-            <textarea className="Content" defaultValue={this.props.record.content} />
-          </div>
-          <div>
-            <input type="submit" value="Submit" />
-          </div>
-        </form>
       </div>
     )
   }
