@@ -14,14 +14,6 @@ export default class NewRecord extends Component {
         <div className="Tip">
           Click to add ...
         </div>
-        <form className="Panel" onSubmit={this.toSubmittingState}>
-          <div>
-            <textarea className="Content" name="content"></textarea>
-          </div>
-          <div>
-            <input className="Submit" type="submit" value="Submit"/>
-          </div>
-        </form>
       </div>
     )
   }
