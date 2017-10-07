@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Worklog.css';
+import NewRecord from '../new-record/NewRecord';
 import Record from '../record/Record';
 
 export default class Worklog extends Component {
@@ -18,9 +19,7 @@ export default class Worklog extends Component {
   render() {
     return (
       <div className="Worklog">
-        <div className="AddWorklog">
-          Click to add ...
-        </div>
+        <NewRecord />
         <div className="Records">
         {
           this.records.map((record, i) =>
@@ -32,5 +31,3 @@ export default class Worklog extends Component {
     )
   }
 }
-
-
