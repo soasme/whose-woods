@@ -34,16 +34,72 @@ export default (state = initialState, action) => {
         ...state,
         credentialPassword: action.data
       }
+    case AUTH_AUTHORIZED:
+      return {
+        ...state,
+        isAuthorizing: false,
+        isAuthorized: true,
+        userProfile: action.data
+      }
+    case AUTH_ERROR:
+      return {
+        ...state,
+        isAuthorizing: false,
+        isAuthorized: false,
+        error: action.data.message
+      }
     default:
       return state
   }
 }
 
 export const requestAuthorization = () => {
-  return dispatch => {
+  return async (dispatch, getState) => {
     dispatch({
       type: AUTH_SUBMITTED
     })
+
+    try {
+      const res = await fetch('http://127.0.0.1:3001/login', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: getState().authorization.credentialUsername,
+          password: getState().authorization.credentialPassword,
+        })
+      })
+      if (res.status === 400) {
+        dispatch({
+          type: AUTH_ERROR,
+          data: {
+            message: `Wrong username or password.`
+          }
+        })
+      } else if (res.status > 400) {
+        dispatch({
+          type: AUTH_ERROR,
+          data: {
+            message: "Something went wrong. :("
+          }
+        })
+      } else {
+        const data = await res.json()
+        localStorage.setItem('token', data.token)
+        dispatch({
+          type: AUTH_AUTHORIZED,
+          data: data
+        })
+      }
+    } catch (e) {
+      dispatch({
+        type: AUTH_ERROR,
+        data: {
+          message: e.toString()
+        }
+      })
+    }
   }
 }
 

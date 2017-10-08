@@ -1,0 +1,31 @@
+{
+  "login": {},
+  "workspaces": [
+    {
+      "id": 1,
+      "title": "Whose Woods"
+    },
+    {
+      "id": 2,
+      "title": "Vanilla Company, Inc."
+    },
+    {
+      "id": 3,
+      "title": "Fancy Life"
+    }
+  ],
+  "records": [
+    {
+      "id": 1,
+      "workspace_id": 1,
+      "content": "Whose woods these are I think I know, His house is in the village though; He will not see me stopping here.  To watch his woods fill up with snow.",
+      "created_at": 1507349064
+    },
+    {
+      "id": 2,
+      "workspace_id": 1,
+      "content": "My little horse must think it queer To stop without a farmhouse near Between the woods and frozen lake The darkest evening of the year.",
+      "created_at": 1507359064
+    }
+  ]
+}
