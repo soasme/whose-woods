@@ -14,9 +14,9 @@ export default class LandingView extends Component {
           <h2>Track what you have done</h2>
           <h3>Always know you are on the right track.</h3>
           <Link to="/app" className="LaunchApp">
-          <button>
-            Launch App
-          </button>
+            <button>
+              Launch App
+            </button>
           </Link>
         </div>
       </div>

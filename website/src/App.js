@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Worklog from './worklog/Worklog';
+import Workspace from './worklog/Worklog';
 import WorkspacePicker from './workspace-picker/WorkspacePicker';
 import './App.css';
 
