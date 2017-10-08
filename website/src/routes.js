@@ -12,8 +12,8 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={LandingView} />
       <Route exact path="/workspace" component={Workspace} />
-      <Route path="/about" component={About} />
       <Route path="/workspace-manage" component={WorkspaceManageView} />
+      <Route path="/about" component={About} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>
