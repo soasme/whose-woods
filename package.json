@@ -1,0 +1,17 @@
+{
+  "name": "worklog",
+  "version": "1.0.0",
+  "description": "Help me track my daily work & life events.",
+  "main": "index.js",
+  "dependencies": {
+    "create-react-app": "^1.4.1"
+  },
+  "devDependencies": {
+    "create-react-app": "^1.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
