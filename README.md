@@ -2,10 +2,10 @@
 
 Help me track my daily work & life events.
 
-* Record events in hour basis.
-* Easy record from any device.
-* Quickly Search by keywords.
-* Filter by tags.
+* Record events in hourly basis.
+* Easily record from any device.
+* Quickly search by keywords.
+* Organize by workspace.
 
 ## Start
 
