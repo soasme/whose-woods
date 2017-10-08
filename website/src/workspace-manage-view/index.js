@@ -17,6 +17,13 @@ export default class WorkspaceManageView extends Component {
     ]
   }
 
+  choose(workspace) {
+    return () => {
+      console.log('choose', workspace);
+      this.props.history.push('/workspace');
+    }
+  }
+
   renderChosenIndicator(workspace) {
     if (workspace.id === this.current) {
       return 'Chosen Candidate';
@@ -24,13 +31,16 @@ export default class WorkspaceManageView extends Component {
     return 'Candidate';
   }
 
+
+
   render() {
     return (
       <div className="WorkspaceManage">
         <ul className="Workspaces">
         {
           this.workspaces.map((workspace, i) =>
-            <div class="Workspace">
+            <div className="Workspace" key={workspace.id}
+              onClick={this.choose(workspace)}>
               <p className={this.renderChosenIndicator(workspace)}>
                 {workspace.title}
               </p>
