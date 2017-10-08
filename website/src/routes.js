@@ -6,7 +6,7 @@ import NotFound from './404-view';
 import LandingView from './landing-view';
 import WorkspaceManageView from './workspace-manage-view';
 import Workspace from './workspace-view';
-import Login from './login/Login';
+import LoginView from './login-view';
 
 const Routes = () => (
   <BrowserRouter>
@@ -15,7 +15,7 @@ const Routes = () => (
       <Route exact path="/workspace" component={Workspace} />
       <Route path="/workspace-manage" component={WorkspaceManageView} />
       <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={LoginView} />
       <Route path="*" component={NotFound} />
     </Switch>
   </BrowserRouter>

@@ -16,7 +16,10 @@ export default class LoginView extends Component {
 
   render() {
     return (
-      <div className="Login">
+      <div className="Login App">
+        <header className="App-header">
+          <h1 className="App-title">Login to Whose Woods</h1>
+        </header>
         <form onSubmit={this.changeToSubmittingState}>
           <div>
             Username: <input type="text" name="username" />
