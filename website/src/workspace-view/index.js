@@ -11,6 +11,8 @@ export default class Workspace extends Component {
     this.state = {
       submitting: false,
     }
+    // TODO: Next we need to move this into db.json.
+    // and change this to props.records
     this.records = [
       {id: 1, content: 'hello world hello world hello world hello world abcdefghigh', created: 1507349064},
       {id: 2, content: 'hey babe', created: 1507359064},
