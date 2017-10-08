@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 
-import { configure  } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+export default class LoginView extends Component {
 
-configure({ adapter: new Adapter()  });
-
-export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
