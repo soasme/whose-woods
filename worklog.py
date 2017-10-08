@@ -25,7 +25,7 @@ def to_ts(dt):
     return calendar.timegm(dt.timetuple())
 
 # Models
-
+# TODO: add workspace
 class Record(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
