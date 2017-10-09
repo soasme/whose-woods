@@ -18,7 +18,8 @@ const initialState = {
   isLoadingList: false,
   isLoadedList: false,
   defaultWorkspaceId: 0,
-  workspaces: {}
+  workspaces: [],
+  workspaceRecords: {}
 }
 
 export default (state = initialState, action) => {
@@ -26,17 +27,68 @@ export default (state = initialState, action) => {
     case WS_SYNCING_DEFAULTS:
       return {
         ...state,
-        isSyncingDefaults: false,
+        isSyncingDefaults: true,
+        isSyncedDefaults: false,
+        error: ''
       }
     case WS_SYNCED_DEFAULTS:
       return {
         ...state,
+        isSyncingDefaults: false,
+        isSyncedDefaults: true,
+      }
+    case WS_SYNC_FAILED_DEFAULTS:
+      return {
+        ...state,
+        isSyncingDefaults: false,
         isSyncedDefaults: false,
+        error: action.data.message
+      }
+    case WS_CHANGING_DEFAULTS:
+      return {
+        ...state,
+        isChangingDefaults: true,
+        isChangedDefaults: false
+      }
+    case WS_CHANGED_DEFAULTS:
+      return {
+        ...state,
+        isChangingDefaults: false,
+        isChangedDefaults: true
+      }
+    case WS_CHANGE_FAILED_DEFAULTS:
+      return {
+        ...state,
+        isChangingDefaults: false,
+        isChangedDefaults: false,
+        error: action.data.message
+      }
+    case WS_LOADING_LIST:
+      return {
+        ...state,
+        isLoadingList: true,
+        isLoadedList: false
+      }
+    case WS_LOADED_LIST:
+      return {
+        ...state,
+        isLoadingList: false,
+        isLoadedList:true
+      }
+    case WS_LOAD_FAILED_LIST:
+      return {
+        ...state,
+        isLoadingList: false,
+        isLoadedList: false,
+        error: action.data.message
       }
     default:
       return state
   }
 }
 
+export const syncDefaultWorkspace = () => {
+
+}
 // HEY TODO. LET'S START FROM HERE NEXT TIME.
 // Next, we need to manage workspace and records.
