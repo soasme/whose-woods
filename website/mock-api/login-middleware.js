@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     }
   } else if (req.get('Authorization') != 'Bearer abc'){
       res.status(401).json({message: 'Unauthorized'})
-  } else if (req.method === 'GET' && res.path === '/profile') {
+  } else if (req.method === 'GET' && req.path === '/profile') {
       res.status(200).json({username: 'soasme', defaults: {
         workspace_id: 1
       }})
