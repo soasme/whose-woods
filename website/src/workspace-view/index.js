@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
-import NewRecord from '../new-record/NewRecord';
-import WorkspacePicker from '../workspace-picker/WorkspacePicker';
-import Record from '../record/Record';
-import './style.css';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {
+  requestProfile,
+} from '../modules/authorization'
 
-export default class Workspace extends Component {
+import NewRecord from '../new-record/NewRecord'
+import WorkspacePicker from '../workspace-picker/WorkspacePicker'
+import Record from '../record/Record'
+import './style.css'
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      submitting: false,
-    }
-    // TODO: Next we need to move this into db.json.
-    // and change this to props.records
-    this.records = [
-      {id: 1, content: 'hello world hello world hello world hello world abcdefghigh', created: 1507349064},
-      {id: 2, content: 'hey babe', created: 1507359064},
-    ]
+class WorkspaceView extends Component {
+  componentDidMount() {
+    this.props.requestProfile()
   }
 
   render() {
+    const props = this.props;
+    if (props.isLoadingProfile) {
+      return <div>Loading...</div>
+    }
+    if (props.loadProfileError) {
+      if (!props.isAuthorized) {
+        return <Redirect to="/login" />
+      }
+      return <div>Something went wrong! {props.loadError}</div>
+    }
     return (
       <div className="App">
         <header className="App-header">
@@ -29,7 +36,7 @@ export default class Workspace extends Component {
           <NewRecord />
           <div className="Records">
           {
-            this.records.map((record, i) =>
+            props.records.map((record, i) =>
               <Record key={i} record={record} />
             )
           }
@@ -40,3 +47,20 @@ export default class Workspace extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthorized: state.authorization.isAuthorized,
+  isLoadingProfile: state.authorization.isLoadingProfile,
+  isLoadedProfile: state.authorization.isLoadedProfile,
+  loadProfileError: state.authorization.loadProfileError,
+  userProfile: state.authorization.userProfile,
+  records: state.workspace.workspaceRecords[state.workspace.defaultWorkspaceId] || []
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  requestProfile,
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WorkspaceView)
