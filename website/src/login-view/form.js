@@ -3,7 +3,7 @@ import { connect  } from 'react-redux';
 import { Field, reduxForm  } from 'redux-form'
 
 let LoginForm = props => {
-  const { error, handleSubmit  } = props
+  const { error, handleSubmit, submitting  } = props
   return (
     <form onSubmit={ handleSubmit  }>
       <div>
@@ -17,7 +17,7 @@ let LoginForm = props => {
       <div>
         {error && <strong>{error}</strong>}
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={submitting}>Log In</button>
     </form>
   )
 }

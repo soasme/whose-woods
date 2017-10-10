@@ -25,16 +25,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case AUTH_CRED_USERNAME_PROVIDED:
-      return {
-        ...state,
-        credentialUsername: action.data
-      }
-    case AUTH_CRED_PASSWORD_PROVIDED:
-      return {
-        ...state,
-        credentialPassword: action.data
-      }
     case AUTH_SUBMITTED:
       return {
         ...state,
@@ -181,23 +171,5 @@ export const requestAuthorization = (data) => {
         }
       })
     }
-  }
-}
-
-export const provideUsername = (data) => {
-  return dispatch => {
-    dispatch({
-      type: AUTH_CRED_USERNAME_PROVIDED,
-      data: data
-    })
-  }
-}
-
-export const providePassword = (data) => {
-  return dispatch => {
-    dispatch({
-      type: AUTH_CRED_PASSWORD_PROVIDED,
-      data: data
-    })
   }
 }

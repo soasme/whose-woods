@@ -21,9 +21,7 @@ const LoginView = props => {
 }
 
 const mapStateToProps = state => ({
-  isAuthorizing: state.authorization.isAuthorizing,
   isAuthorized: state.authorization.isAuthorized,
-  userProfile: state.authorization.userProfile,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
