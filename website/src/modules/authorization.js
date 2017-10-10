@@ -134,7 +134,7 @@ export const requestProfile = () => {
   }
 }
 
-export const requestAuthorization = () => {
+export const requestAuthorization = (data) => {
   return async (dispatch, getState) => {
     dispatch({
       type: AUTH_SUBMITTED
@@ -147,8 +147,8 @@ export const requestAuthorization = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          username: getState().authorization.credentialUsername,
-          password: getState().authorization.credentialPassword,
+          username: data.username,
+          password: data.password
         })
       })
       if (res.status === 400) {
