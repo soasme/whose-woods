@@ -8,7 +8,7 @@ export default class Record extends Component {
     record: {
       id: 0,
       content: '',
-      created: 0
+      created_at: 0
     }
   }
 
@@ -20,7 +20,7 @@ export default class Record extends Component {
   }
 
   toHumanTime() {
-    var date = new Date(this.props.record.created * 1000)
+    var date = new Date(this.props.record.created_at * 1000)
     return date.toLocaleString('en-GB')
   }
 
