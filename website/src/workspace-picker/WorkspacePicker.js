@@ -6,11 +6,12 @@ import './WorkspacePicker.css';
 const WorkspacePicker = (props) => {
   return (
     <div className="WorkspacePicker">
-      <Link to="/workspace-manage">
-        <span>[ </span>
-        <span>{props.defaultWorkspace && props.defaultWorkspace.title || 'Loading...' }</span>
-        <span> ]</span>
-      </Link>
+      <span>[ </span>
+      <span>{props.defaultWorkspace ? props.defaultWorkspace.title : 'Loading...' }</span>
+      <span> ]</span>
+      <div>
+        <Link to="/workspace-manage">manage</Link>
+      </div>
     </div>
   )
 }
