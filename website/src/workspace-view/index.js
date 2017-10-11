@@ -18,7 +18,10 @@ class WorkspaceView extends Component {
       .then(() => this.props.fetchRecords())
   }
 
-  componentDidUpdate(prevProps) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fetchRecordsStatus === 'waiting') {
+      this.props.fetchRecords()
+    }
   }
 
   render() {
@@ -58,7 +61,8 @@ const mapStateToProps = state => ({
   isLoadedProfile: state.authorization.isLoadedProfile,
   loadProfileError: state.authorization.loadProfileError,
   userProfile: state.authorization.userProfile,
-  records: state.workspace.workspaceRecords[state.workspace.defaultWorkspaceId] || []
+  records: state.record.entities || [],
+  fetchRecordsStatus: state.record.fetchStatus,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
