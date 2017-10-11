@@ -3,15 +3,18 @@
   "workspaces": [
     {
       "id": 1,
-      "title": "Whose Woods"
+      "title": "Whose Woods",
+      "isDefault": true
     },
     {
       "id": 2,
-      "title": "Vanilla Company, Inc."
+      "title": "Vanilla Company, Inc.",
+      "isDefault": false
     },
     {
       "id": 3,
-      "title": "Fancy Life"
+      "title": "Fancy Life",
+      "isDefault": false
     }
   ],
   "records": [
