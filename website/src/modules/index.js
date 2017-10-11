@@ -3,10 +3,12 @@ import { routerReducer  } from 'react-router-redux'
 import { reducer as formReducer  } from 'redux-form'
 import authorization from './authorization'
 import workspace from './workspace'
+import record from './record'
 
 export default combineReducers({
   router: routerReducer,
   form: formReducer,
   authorization,
-  workspace
+  record,
+  workspace,
 })
