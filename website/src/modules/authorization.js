@@ -10,6 +10,7 @@ export const LOAD_ERROR = '/authorization/profile/load/failure'
 
 const initialState = {
   error: '',
+  token: '',
   isAuthorizing: false,
   isAuthorized: false,
   credentialUsername: '',
@@ -35,7 +36,7 @@ export default (state = initialState, action) => {
         ...state,
         isAuthorizing: false,
         isAuthorized: true,
-        userProfile: action.data
+        token: action.data.token,
       }
     case AUTH_ERROR:
       return {
@@ -49,6 +50,7 @@ export default (state = initialState, action) => {
         ...state,
         isLoadingProfile: true,
         isLoadedProfile: false,
+        loadProfileError: ''
       }
     case LOADED_PROFILE:
       return {
@@ -78,6 +80,18 @@ export const requestProfile = () => {
     })
 
     const token = localStorage.getItem('token') || ''
+    if (token === '') {
+      dispatch({
+        type: AUTH_ERROR,
+        data: null
+      })
+      return
+    }
+
+    dispatch({
+      type: AUTH_AUTHORIZED,
+      data: {token: token}
+    })
 
     try {
       const res = await fetch('http://127.0.0.1:3001/profile', {
