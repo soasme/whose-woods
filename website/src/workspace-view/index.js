@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { requestProfile, } from '../modules/authorization'
 import { syncWorkspaces } from '../modules/workspace'
+import { fetchRecords } from '../modules/record'
 
 import NewRecord from '../new-record/NewRecord'
 import WorkspacePicker from '../workspace-picker/WorkspacePicker'
@@ -14,6 +15,7 @@ class WorkspaceView extends Component {
   componentDidMount() {
     this.props.requestProfile()
       .then(() => this.props.syncWorkspaces())
+      .then(() => this.props.fetchRecords())
   }
 
   componentDidUpdate(prevProps) {
@@ -62,6 +64,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   requestProfile,
   syncWorkspaces,
+  fetchRecords,
 }, dispatch)
 
 export default connect(
