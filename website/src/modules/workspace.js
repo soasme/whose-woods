@@ -18,7 +18,7 @@ const initialState = {
   isLoadingList: false,
   isLoadedList: false,
   defaultWorkspaceId: 0,
-  workspaces: [],
+  entities: [],
   workspaceRecords: {}
 }
 
@@ -73,7 +73,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoadingList: false,
-        isLoadedList:true
+        isLoadedList:true,
+        entities: action.data
       }
     case WS_LOAD_FAILED_LIST:
       return {
@@ -87,8 +88,17 @@ export default (state = initialState, action) => {
   }
 }
 
-export const syncDefaultWorkspace = () => {
-
+export const syncWorkspaces = () => {
+  return async (dispatch, getState) => {
+    const res = await fetch("http://127.0.0.1:3001/workspaces", {
+      headers: {
+        'Authorization': `Bearer ${getState().authorization.token}`
+      }
+    })
+    const data = await res.json()
+    dispatch({
+      type: WS_LOADED_LIST,
+      data: data
+    })
+  }
 }
-// HEY TODO. LET'S START FROM HERE NEXT TIME.
-// Next, we need to manage workspace and records.
