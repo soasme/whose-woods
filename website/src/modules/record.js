@@ -2,6 +2,7 @@ export const RC_FETCHLIST_LOADING = '/record/fetchList/loading'
 export const RC_FETCHLIST_LOADED = '/record/fetchList/loaded'
 export const RC_RECORD_ADDING = '/record/adding'
 export const RC_RECORD_ADDED = '/record/added'
+export const RC_RECORD_UPDATED = '/record/updated'
 
 const initState = {
   fetchStatus: 'loading',
@@ -34,6 +35,11 @@ export default (state = initState, action) => {
         ...state,
         isAdding: false,
         isAdded: true,
+        fetchStatus: 'waiting',
+      }
+    case RC_RECORD_UPDATED:
+      return {
+        ...state,
         fetchStatus: 'waiting',
       }
     default:
@@ -76,6 +82,26 @@ export const addRecord = () => {
     dispatch({
       type: RC_RECORD_ADDED,
       data: data
+    })
+  }
+}
+
+export const updateRecord = (id, values) => {
+  return async (dispatch, getState) => {
+    const content = values.content
+    console.log(id, content)
+    const res = await fetch(`http://127.0.0.1:3001/records/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getState().authorization.token}`
+      },
+      body: JSON.stringify({content: content})
+    })
+    const data = await res.json()
+    dispatch({
+      type: RC_RECORD_UPDATED,
+      date: data
     })
   }
 }
