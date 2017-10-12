@@ -1,30 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
 import './RecordEditor.css'
 
-export default class RecordEditor extends Component {
-
-  static defaultProps = {
-    defaultValue: ''
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      submitting: false,
-      content: '',
-    }
-  }
-
-  render() {
-    const placeholder = this.props.placeholder || 'Enter a record here.'
-    return (
-      <div className="RecordEditor">
-        <TextareaAutosize id="Content" className="Workspace"
-          defaultValue={this.props.defaultValue}
-          placeholder={placeholder} />
-      </div>
-    )
-  }
+export default (props) => {
+  const placeholder = props.placeholder || 'Enter a record here.'
+  const { input: { onChange  }, defaultValue } = props
+  return (
+    <div className="RecordEditor">
+      <TextareaAutosize id="Content" className="Workspace"
+        innerRef={ref => this.textarea = ref}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        placeholder={placeholder} />
+    </div>
+  )
 }
-
