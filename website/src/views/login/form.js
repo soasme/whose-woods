@@ -14,19 +14,17 @@ export const LoginForm = props => {
         <label htmlFor="password">Password</label>
         <Field name="password" component="input" type="password" />
       </div>
-      <div>
-        {error && <strong>{error}</strong>}
-      </div>
+      { error && <div className="error">{ error }</div> }
       <button type="submit" disabled={submitting}>Log In</button>
     </form>
   )
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   error: state.authorization.error
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
 
 })
 
