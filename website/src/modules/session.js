@@ -10,6 +10,6 @@ export const loadSession = () => {
 }
 
 // validate token, and set uid if success.
-export const authorizeSession = () => {
+export const authorize = () => {
 
 }

@@ -2,9 +2,7 @@ import React from 'react'
 import { bindActionCreators  } from 'redux'
 import { Redirect  } from 'react-router'
 import { connect  } from 'react-redux'
-
-import { requestAuthorization } from '../../modules/authorization'
-
+import { authorize } from '../../modules/session'
 import LoginForm from './form'
 
 const LoginView = props => {
@@ -12,26 +10,22 @@ const LoginView = props => {
     return (<Redirect to="/workspace" />);
   } else {
     return (
-      <div className="Login App">
-        <header className="App-header">
-          <h1 className="App-title">Login to Whose Woods</h1>
-        </header>
-        <LoginForm onSubmit={props.requestAuthorization} />
+      <div className="login-view">
+        <LoginForm onSubmit={props.authorize} />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthorized: state.authorization.isAuthorized,
+  isAuthorized: state.session.uid ? true : false,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  requestAuthorization,
+  authorize,
 }, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginView)
-
