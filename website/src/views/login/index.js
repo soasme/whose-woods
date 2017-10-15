@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { bindActionCreators  } from 'redux'
 import { Redirect  } from 'react-router'
 import { connect  } from 'react-redux'
 import { authorize } from '../../modules/session'
 import LoginForm from './form'
 
-const LoginView = props => {
-  if (props.isAuthorized) {
-    return (<Redirect to="/workspace" />);
-  } else {
+class LoginView extends Component {
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isAuthorized) {
+      this.props.history.push(this.props.onLoginSuccess)
+    }
+  }
+
+  render() {
     return (
       <div className="login-view">
-        <LoginForm onSubmit={props.authorize} />
+        <LoginForm onSubmit={this.props.authorize} />
       </div>
     )
   }
@@ -19,6 +24,7 @@ const LoginView = props => {
 
 const mapStateToProps = state => ({
   isAuthorized: state.session.uid ? true : false,
+  onLoginSuccess: state.site.loggedInEndpoint,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
