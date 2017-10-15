@@ -1,12 +1,7 @@
-const CONFIG = {
-  suffix: ['LOADING', 'LOADED', 'ABORT'],
-  respType: 'json',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  }
-}
-
+// FIXME
+export const AUTHORIZE_LOADED = 'AUTHORIZE_LOADED'
+export const AUTHORIZE_LOADING = 'AUTHORIZE_LOADING'
+export const AUTHORIZE_ABORTED = 'AUTHORIZE_ABORTED'
 
 const initialState = {
   profile: {
@@ -28,6 +23,15 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case AUTHORIZE_LOADED:
+      return {
+        ...state,
+        profile: {
+          status: 'loaded',
+          error: null,
+          entity: data
+        }
+      }
     default:
       return state
   }
