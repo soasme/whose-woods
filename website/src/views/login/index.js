@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { bindActionCreators  } from 'redux'
 import { connect  } from 'react-redux'
-import { authorize } from '../../modules/session'
+import { login } from '../../modules/session'
 import LoginForm from './form'
 
 class LoginView extends Component {
 
   componentDidUpdate(prevProps) {
-    if (this.props.isAuthorized) {
+    if (this.props.isLoggedIn) {
       this.props.history.push(this.props.onLoginSuccess)
     }
   }
@@ -15,19 +15,19 @@ class LoginView extends Component {
   render() {
     return (
       <div className="login-view">
-        <LoginForm onSubmit={this.props.authorize} />
+        <LoginForm onSubmit={this.props.login } />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthorized: state.session.uid ? true : false,
+  isLoggedIn: state.session.isLoggedIn ? true : false,
   onLoginSuccess: state.site.loggedInEndpoint,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  authorize,
+  login,
 }, dispatch)
 
 export default connect(
