@@ -5,7 +5,7 @@ import { Field, reduxForm  } from 'redux-form'
 export const LoginForm = props => {
   const { error, handleSubmit, submitting  } = props
   return (
-    <form onSubmit={ handleSubmit  }>
+    <form onSubmit={ handleSubmit } className='login-form'>
       <div>
         <label htmlFor="username">Username</label>
         <Field name="username" component="input" type="text" />
@@ -14,14 +14,14 @@ export const LoginForm = props => {
         <label htmlFor="password">Password</label>
         <Field name="password" component="input" type="password" />
       </div>
-      { error && <div className="error">{ error }</div> }
+      {error && <div className="error">{error}</div>}
       <button type="submit" disabled={submitting}>Log In</button>
     </form>
   )
 }
 
 export const mapStateToProps = state => ({
-  error: state.authorization.error
+  error: state.session.error
 })
 
 export const mapDispatchToProps = dispatch => ({
