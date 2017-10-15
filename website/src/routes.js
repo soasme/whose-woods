@@ -3,12 +3,13 @@ import { Provider  } from 'react-redux'
 import { Switch, Route  } from 'react-router-dom';
 import { ConnectedRouter  } from 'react-router-redux'
 import store, { history } from './store';
+import LoginView from './views/login'
+
 import About from './about-view';
 import NotFound from './404-view';
 import LandingView from './landing-view';
 import WorkspaceManageView from './workspace-manage-view';
 import Workspace from './workspace-view';
-import LoginView from './login-view';
 
 const Routes = () => (
   <Provider store={store}>
