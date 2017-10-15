@@ -18,7 +18,7 @@ export const Header = props => {
 
 const mapStateToProps = state => ({
   pageTitle: 'Whose Woods',
-  isAuthorized: state.authorization.isAuthorized || false,
+  isAuthorized: state.session.uid ? true : false,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
